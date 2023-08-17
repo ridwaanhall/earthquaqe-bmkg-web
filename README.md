@@ -1,0 +1,1 @@
+# earthquaqe-bmkg-web

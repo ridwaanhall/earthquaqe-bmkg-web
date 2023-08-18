@@ -1,0 +1,2 @@
+class inatews:
+  pass

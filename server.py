@@ -12,3 +12,7 @@ def inatews_news():
     inatews = INA_TEWS()
     json_data = inatews.news()
     return render_template("inatews-news.html", json_data=json_data)
+
+@app.route("/test")
+def test():
+    return render_template("testing.html")

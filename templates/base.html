@@ -18,9 +18,13 @@
 
     <!-- Custom styles for this template -->
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="static/css/scroll.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="static/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
 
 </head>
 
@@ -33,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -45,8 +49,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-house"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -171,50 +175,8 @@
                         </button>
                     </form>
 
-                    <!-- Topbar Search -->
-                    <!--
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    -->
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <!--
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        -->
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -254,13 +216,6 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-
     <!-- Bootstrap core JavaScript-->
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -278,6 +233,46 @@
     <!-- Page level custom scripts -->
     <script src="static/js/demo/datatables-demo.js"></script>
 
+    <!-- overlayScrollbars -->
+    <script src="static/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+      	const os = OverlayScrollbars(document.querySelectorAll("body"), {
+      	clipAlways: false
+      });
+      	window.os = os
+      	const blocks = document.querySelectorAll('div.block')
+      	
+      	function scrollIntoViewIfNeeded(el){
+      		const height = window.innerHeight || document.documentElement.clientHeight
+      		const { top, bottom } = el.getBoundingClientRect()
+      		console.log('h', height, 't', top, 'b', bottom)
+      		if (top < height * 0.1 || bottom > height * 0.9) {
+      			// almost does not scroll near the bottom and
+      			// does not scroll at the bottom
+      			os.update() // THE FIX!!!
+      			os.scroll({el, block : "center"}, 200)
+      			
+      			// does not scroll to the bottom!
+      			//os.scroll({y:'100%'}, 1000)
+      		}
+      	}
+      	
+      	blocks.forEach(b=>{
+      		const title = b.children[0]
+      		const body = b.children[1]
+      		title.addEventListener('click', ()=>{
+      			if (body.style.display!="block") {
+      				body.style.display = 'block'
+      				scrollIntoViewIfNeeded(b)
+      			} else {
+      				body.style.display = "none"
+      			}
+      		})
+      	})
+      	
+      });
+    </script>
 </body>
 
 </html>

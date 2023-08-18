@@ -5,16 +5,90 @@
 {% block content %}
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <!-- Content Row -->
+                    <div class="row">
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Magnitude</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ json_data.info.magnitude }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-layer-group fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Depth</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ json_data.info.depth }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-podcast fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                coordinates</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ json_data.info.point.coordinates }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-map-location fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Datetime</div>
+                                            <div class="text-auto mb-0 font-weight-bold text-gray-800">{{ json_data.info.time }}<sup> {{ json_data.info.date }}</sup></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-clock fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">{{ json_data.info.subject }}</h1>
+                    </div>
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">{{ json_data.info.subject }}</h1>
-                    <p class="mb-4">{{ json_data.info.headline }}</p>
-                    <p class="mb-4">{{ json_data.info.description }}</p>
-
+                    <p class="mb-4">{{ json_data.info.headline }}.</p>
+                    <p class="mb-4">{{ json_data.info.description }}. {{ json_data.info.instruction }}.</p>
+                    <p class="mb-4"></p>
+                    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-warning">{{ json_data.info.event }}</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Time Sent : {{ json_data.info.timesent }}</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

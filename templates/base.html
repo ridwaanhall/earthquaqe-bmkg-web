@@ -26,6 +26,10 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="static/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
 
+    {% block head_maps %}
+    {% endblock %}
+  
+
 </head>
 
 <body id="page-top">
@@ -39,7 +43,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-house-chimney-crack"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">EQ<sup>BMKG</sup></div>
             </a>
@@ -63,20 +67,19 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {% if request.path == '/inatews-news' %}active{% endif %}">
-                <a class="nav-link{% if request.path != '/inatews-news' %} collapsed{% endif %}"
+            <li class="nav-item {% if request.path == '/inatews-news' or request.path == '/inatews-maps' %}active{% endif %}">
+                <a class="nav-link{% if request.path != '/inatews-news'  and request.path != '/inatews-maps' %} collapsed{% endif %}"
                    href="#" data-toggle="collapse" data-target="#collapseINATEWSnews"
                    aria-expanded="true" aria-controls="collapseINATEWSnews">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>INATEWS</span>
                 </a>
                 <div id="collapseINATEWSnews"
-                     class="collapse {% if request.path == '/inatews-news' %}show{% endif %}"
-                     aria-labelledby="INATEWSnews" data-parent="#accordionSidebar">
+                     class="collapse {% if request.path == '/inatews-news' or request.path == '/inatews-maps' %}show{% endif %}" aria-labelledby="INATEWSnews" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">inatews.bmkg.go.id</h6>
-                        <a class="collapse-item" href="#">Maps</a>
-                        <a class="collapse-item{% if request.path == '/inatews-news' %} active{% endif %}" href="#">News</a>
+                        <a class="collapse-item{% if request.path == '/inatews-maps' %} active{% endif %}" href="{{ url_for('inatews_maps') }}">Maps</a>
+                        <a class="collapse-item{% if request.path == '/inatews-news' %} active{% endif %}" href="{{ url_for('inatews_news') }}">News</a>
                     </div>
                 </div>
             </li>
@@ -206,7 +209,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; INATEWS - BMKG 2023</span>
+                        <span>Copyright &copy; RidwaanHall - BMKG 2023</span>
                     </div>
                 </div>
             </footer>
@@ -276,6 +279,7 @@
       	
       });
     </script>
+    {% block maps %} {% endblock %}
 </body>
 
 </html>

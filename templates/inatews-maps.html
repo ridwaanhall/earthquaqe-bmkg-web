@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}Maps - INATEWS{% endblock %}
+
+
+{% block head_maps %}
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+      integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+      integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+      crossorigin=""
+    ></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <script src="static/js/line.js"></script>
+
+    <style>
+      #eqMap { 
+        height: 360px
+      }
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+                        <h1 class="h3 mb-0 text-gray-800">Maps and Images</h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Collapsable Card Example -->
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Accordion -->
+                                <a href="#collapseMapsINATEWS" class="d-block card-header py-3" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="collapseMapsINATEWS">
+                                    <h6 class="m-0 font-weight-bold">Maps</h6>
+                                </a>
+                                <!-- Card Content - Collapse -->
+                                <div class="collapse show" id="collapseMapsINATEWS">
+                                    <div class="card-body">
+                                      <div class="mb-2">
+                                        <div class="text-gray-700">{{ json_data.info.headline }}</div>
+                                      </div>
+                                      <div id="eqMap">
+                                        
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                  Intensity Logo v1
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.info.eventid }}_rev/intensity_logo.jpg" alt="Intensity Logo v1" class="col-auto">
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                  Intensity Logo v2
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.info.eventid }}.mmi.jpg" alt="Intensity Logo v2" class="col-auto">
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                  Location Map
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.info.eventid }}_rev/loc_map.png" alt="Location Map" class="col-auto">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                 Station List MMI
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.info.eventid }}_rev/stationlist_MMI.jpg" alt="Station List MMI" class="col-auto">
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header">
+                                 Impact List
+                                </div>
+                                <div class="card-body">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.info.eventid }}_rev/impact_list.jpg" alt="Impact List" class="col-auto">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}
+
+
+{% block maps %}
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+        // Making a map and tiles
+        const mymap = L.map('eqMap').setView([{{ latitude }}, {{ longitude }}], 7); // Set initial view to the latitude and longitude
+        const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+        const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        const tiles = L.tileLayer(tileUrl, { attribution });
+        tiles.addTo(mymap);
+
+        // Making a marker with a custom icon
+        const locIcon = L.icon({
+            iconUrl: '/static/img/circle.png',
+            iconSize: [50, 50],
+            iconAnchor: [25, 25]
+        });
+        let marker = L.marker([{{ latitude }}, {{ longitude }}], 
+        { icon: locIcon }
+        )
+          .addTo(mymap)
+          .bindPopup('<div class="text-gray-700 mb-0">Coordinates : {{ json_data.info.point.coordinates }}</div><div class="text-gray-700 mb-0"> Magnitude : {{ json_data.info.magnitude }} M</div><div class="text-gray-700 mb-2"> Depth : {{ json_data.info.depth }}</div>');
+
+
+        // Google Map Layer
+
+        googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+            maxZoom: 20,
+            subdomains:['mt0','mt1','mt2','mt3']
+         });
+         googleStreets.addTo(mymap);
+        
+         // Satelite Layer
+        googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+           maxZoom: 20,
+           subdomains:['mt0','mt1','mt2','mt3']
+         });
+        googleSat.addTo(mymap);
+
+        // GEOJSON
+        const fault_indo_worldLine = L.geoJSON(fault_indo_world).addTo(mymap);
+
+        const baseLayers = {
+            "Satellite":googleSat,
+            "Google Map":googleStreets,
+            "OpenStreetMap": tiles,
+        };
+
+        const overlays = {
+            "Fault Indo World":fault_indo_worldLine,
+        };
+      
+        L.control.layers(baseLayers, overlays).addTo(mymap);
+
+      
+    </script>
+
+{% endblock %}

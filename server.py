@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from Controller.INATEWS import INA_TEWS
+from Controller.INATEWS import INA_TEWS, BMKG_Data
 
 app = Flask(__name__)
 
@@ -20,6 +20,15 @@ def inatews_maps():
     longitude, latitude, headline = ina_tews.maps()
     json_data = ina_tews.news()
     return render_template("inatews-maps.html", longitude=longitude, latitude=latitude, headline=headline, json_data=json_data)
+
+
+@app.route("/bmkgdata-news")
+def bmkgdata_news():
+    bmkgdata = BMKG_Data()
+    json_data = bmkgdata.news()
+    return render_template("bmkgdata-news.html", json_data=json_data)
+
+
 
 
 @app.route("/test")

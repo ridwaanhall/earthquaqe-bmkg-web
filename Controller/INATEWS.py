@@ -20,3 +20,10 @@ class INA_TEWS:
       headline = json_data['info']['headline']
       longitude, latitude = map(float, coordinates_str.split(','))
       return longitude, latitude, headline
+
+
+class BMKG_Data:
+  def news(self):
+    reader = ReadUrl()
+    json_data = reader.read_json('https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
+    return json_data

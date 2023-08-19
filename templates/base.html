@@ -86,18 +86,20 @@
 
 
             <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBMKGdataNew"
+            <li class="nav-item {% if request.path == '/bmkgdata-news' or request.path == '/bmkgdata-maps' %}active{% endif %}">
+                <a class="nav-link{% if request.path != '/bmkgdata-news'  and request.path != '/bmkgdata-maps' %} collapsed{% endif %}" 
+                  href="#" data-toggle="collapse" data-target="#collapseBMKGdataNew"
                     aria-expanded="true" aria-controls="collapseBMKGdataNew">
                     <i class="fas fa-fw fa-wrench"></i>
                     <span>BMKG DATA</span>
                 </a>
-                <div id="collapseBMKGdataNew" class="collapse" aria-labelledby="BMKGdataNew"
+                <div id="collapseBMKGdataNew" 
+                    class="collapse {% if request.path == '/bmkgdata-news' or request.path == '/bmkgdata-maps' %}show{% endif %}" aria-labelledby="BMKGdataNew"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">data.bmkg.go.id</h6>
-                        <a class="collapse-item" href="#">Maps</a>
-                        <a class="collapse-item" href="#">News</a>
+                        <a class="collapse-item{% if request.path == '/bmkgdata-maps' %} active{% endif %}" href="#">Maps</a>
+                        <a class="collapse-item{% if request.path == '/bmkgdata-news' %} active{% endif %}" href="{{ url_for('bmkgdata_news') }}">News</a>
                     </div>
                 </div>
             </li>

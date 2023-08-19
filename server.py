@@ -29,6 +29,12 @@ def bmkgdata_news():
     return render_template("bmkgdata-news.html", json_data=json_data)
 
 
+@app.route("/bmkgdata-maps")
+def bmkgdata_maps():
+    bmkgdata = BMKG_Data()
+    latitude, longitude = bmkgdata.maps()
+    json_data = bmkgdata.news()
+    return render_template("bmkgdata-maps.html", longitude=longitude, latitude=latitude, json_data=json_data)
 
 
 @app.route("/test")

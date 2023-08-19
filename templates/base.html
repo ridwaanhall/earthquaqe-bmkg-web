@@ -113,14 +113,14 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {% if request.path == '/inatews-live30event' or request.path == '/inatews-maps' %}active{% endif %}">
-                <a class="nav-link{% if request.path != '/inatews-live30event'  and request.path != '/inatews-maps' %} collapsed{% endif %}" 
+            <li class="nav-item {% if request.path == '/inatews-live30event' %}active{% endif %}">
+                <a class="nav-link{% if request.path != '/inatews-live30event' %} collapsed{% endif %}" 
                   href="#" data-toggle="collapse" data-target="#collapseINATEWSeq"
                     aria-expanded="true" aria-controls="collapseINATEWSeq">
                     <i class="fas fa-fw fa-table"></i>
                     <span>INATEWS</span>
                 </a>
-                <div id="collapseINATEWSeq" class="collapse {% if request.path == '/inatews-live30event' or request.path == '/inatews-maps' %}show{% endif %}" aria-labelledby="INATEWSeq" 
+                <div id="collapseINATEWSeq" class="collapse {% if request.path == '/inatews-live30event' or request.path == '/inatews-n' %}show{% endif %}" aria-labelledby="INATEWSeq" 
                   data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">inatews.bmkg.go.id</h6>

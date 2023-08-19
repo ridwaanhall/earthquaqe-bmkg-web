@@ -14,16 +14,23 @@ class INA_TEWS:
         return json_data
 
     def maps(self):
-      reader = ReadUrl()
-      json_data = reader.read_json('https://earthquaqe-bmkg-api-v1.ridwaanhall.repl.co/new.json')
-      coordinates_str = json_data["info"]["point"]["coordinates"]
-      headline = json_data['info']['headline']
-      longitude, latitude = map(float, coordinates_str.split(','))
-      return longitude, latitude, headline
+        reader = ReadUrl()
+        json_data = reader.read_json('https://earthquaqe-bmkg-api-v1.ridwaanhall.repl.co/new.json')
+        coordinates_str = json_data["info"]["point"]["coordinates"]
+        headline = json_data['info']['headline']
+        longitude, latitude = map(float, coordinates_str.split(','))
+        return longitude, latitude, headline
 
 
 class BMKG_Data:
-  def news(self):
-    reader = ReadUrl()
-    json_data = reader.read_json('https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
-    return json_data
+    def news(self):
+        reader = ReadUrl()
+        json_data = reader.read_json('https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
+        return json_data
+
+    def maps(self):
+        reader = ReadUrl()
+        json_data = reader.read_json('https://earthquaqe-bmkg-api-v1.ridwaanhall.repl.co/autogempa.json')
+        coordinates_str = json_data["Infogempa"]["gempa"]["point"]["coordinates"]
+        latitude, longitude = map(float, coordinates_str.split(','))
+        return latitude, longitude

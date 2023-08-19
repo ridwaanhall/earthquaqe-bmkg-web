@@ -21,6 +21,11 @@ class INA_TEWS:
         longitude, latitude = map(float, coordinates_str.split(','))
         return longitude, latitude, headline
 
+    def live30event(self):
+        reader = ReadUrl()
+        json_data = reader.read_json('https://earthquaqe-bmkg-api.ridwaanhall.repl.co/live30event.json')
+        return json_data
+
 
 class BMKG_Data:
     def news(self):

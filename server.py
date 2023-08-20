@@ -131,3 +131,10 @@ def bmkgdata_recentEQ():
   bmkgdata = BMKG_Data()
   json_data, average_magnitude, average_depth, total_data = bmkgdata.recentEQ()
   return render_template("bmkgdata-recentEQ.html", json_data=json_data, average_magnitude=average_magnitude, average_depth=average_depth, total_data=total_data)
+
+
+@app.route("/bmkgdata-EQfelt")
+def bmkgdata_EQfelt():
+  bmkgdata = BMKG_Data()
+  json_data, average_magnitude, average_depth, total_data = bmkgdata.EQfelt()
+  return render_template("bmkgdata-EQfelt.html", json_data=json_data, average_magnitude=average_magnitude, average_depth=average_depth, total_data=total_data)

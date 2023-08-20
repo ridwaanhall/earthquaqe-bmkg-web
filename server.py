@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from Controller.EarthquakeController import INA_TEWS, BMKG_Data
+from Controller.DashboardController import Dashboard
 
 app = Flask(__name__)
 
@@ -8,10 +9,13 @@ app = Flask(__name__)
 def home():
   return "ridwan dimari"
 
-
+# ============= DASHBOARD ========
 @app.route("/dashboard")
 def dashboard():
-  return render_template("dashboard.html")
+  dashboard = Dashboard()
+  longitude, latitude, headline = dashboard.maps_dashboard()
+  info_dashboard = dashboard.news_dashboard()
+  return render_template("dashboard.html", info_dashboard=info_dashboard, longitude=longitude, latitude=latitude, headline=headline)
 
 
 # =========== INATEWS ==========

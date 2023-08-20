@@ -113,22 +113,22 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item {% if request.path == '/inatews-live30event' or request.path == '/inatews-last30event' or request.path == '/inatews-last30feltevent' %}active{% endif %}">
-                <a class="nav-link{% if request.path != '/inatews-live30event' and request.path != '/inatews-last30event' and request.path != '/inatews-last30feltevent' %} collapsed{% endif %}" 
+            <li class="nav-item {% if request.path == '/inatews-live30event' or request.path == '/inatews-last30event' or request.path == '/inatews-last30feltevent' or request.path == '/inatews-last30tsunamievent' %}active{% endif %}">
+                <a class="nav-link{% if request.path != '/inatews-live30event' and request.path != '/inatews-last30event' and request.path != '/inatews-last30feltevent' and request.path != '/inatews-last30tsunamievent' %} collapsed{% endif %}" 
                   href="#" data-toggle="collapse" data-target="#collapseINATEWSeq"
                     aria-expanded="true" aria-controls="collapseINATEWSeq">
                     <i class="fas fa-fw fa-table"></i>
                     <span>INATEWS</span>
                 </a>
                 <div id="collapseINATEWSeq" 
-                  class="collapse {% if request.path == '/inatews-live30event' or request.path == '/inatews-last30event' or request.path == '/inatews-last30feltevent' %}show{% endif %}" aria-labelledby="INATEWSeq" 
+                  class="collapse {% if request.path == '/inatews-live30event' or request.path == '/inatews-last30event' or request.path == '/inatews-last30feltevent' or request.path == '/inatews-last30tsunamievent' %}show{% endif %}" aria-labelledby="INATEWSeq" 
                   data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">inatews.bmkg.go.id</h6>
                         <a class="collapse-item{% if request.path == '/inatews-live30event' %} active{% endif %}" href="{{ url_for('inatews_live30event') }}">Real-Time EQ</a>
                         <a class="collapse-item{% if request.path == '/inatews-last30event' %} active{% endif %}" href="{{ url_for('inatews_last30event') }}">Earthquake M>5</a>
                         <a class="collapse-item{% if request.path == '/inatews-last30feltevent' %} active{% endif %}" href="{{ url_for('inatews_last30feltevent') }}">Significant Earthquake</a>
-                        <a class="collapse-item" href="#">last30tsunamievent</a>
+                        <a class="collapse-item{% if request.path == '/inatews-last30tsunamievent' %} active{% endif %}" href="{{ url_for('inatews_last30tsunamievent') }}">Tsunami Events</a>
                         <div class="collapse-divider"></div>
                         <h6 class="collapse-header">Other EQ:</h6>
                         <a class="collapse-item" href="#">3mgempaQL</a>

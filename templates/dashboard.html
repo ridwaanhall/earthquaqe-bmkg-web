@@ -175,6 +175,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Color System -->
+                            <div class="row">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card shadow">
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body chart-pie">
+                                            <canvas id="myPieChart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            Success
+                                            <div class="text-white-50 small">#1cc88a</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                       
                     </div>
@@ -184,6 +207,45 @@
 
 
 {% block maps %}
+    <script src="static/vendor/chart.js/Chart.min.js"></script>
+    <script>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+        
+        // Pie Chart Example
+        var ctx = document.getElementById("myPieChart");
+        var myPieChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["Direct", "Referral", "Social"],
+            datasets: [{
+              data: [55, 30, 15],
+              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
+              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+              hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+          },
+          options: {
+            maintainAspectRatio: false,
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: '#dddfeb',
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: true,
+              caretPadding: 1,
+            },
+            legend: {
+              display: true
+            },
+            cutoutPercentage: 0,
+          },
+        });
+
+    </script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>

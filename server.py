@@ -100,7 +100,7 @@ def inatews_EQcatalog():
                          total_data=total_data)
 
 
-@app.route("/inatews-histori")
+@app.route("/inatews-history")
 def inatews_histori():
   inatews = INA_TEWS()
   json_data, average_magnitude, average_depth, total_data = inatews.histori()

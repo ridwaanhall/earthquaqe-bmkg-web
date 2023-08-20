@@ -127,6 +127,24 @@ class INA_TEWS:
     total_data = len(features)  # Calculate the total number of data entries
     return json_data, average_magnitude, average_depth, total_data
 
+  def histori(self):
+    reader = ReadUrl()
+    json_data = reader.read_json(
+      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/histori.json')
+    features = json_data.get("features", [])
+    magnitude_values = [
+      float(feature["properties"]["mag"]) for feature in features
+    ]
+    depth_values = [
+      float(feature["properties"]["depth"]) for feature in features
+    ]
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
+    total_data = len(features)  # Calculate the total number of data entries
+    return json_data, average_magnitude, average_depth, total_data
+
 
 class BMKG_Data:
 

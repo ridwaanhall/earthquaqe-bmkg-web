@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}Significant Earthquake - INATEWS{% endblock %}
+
+{% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Significant Earthquake - Indonesia Tsunami Early Warning System</h1>
+                    </div>
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card bg-danger text-white shadow">
+                                <div class="card-body">
+                                    Disclaimer!
+                                    <div class="text-white-50 ">These list significant events issued after BMKG received eathquake felt report from the public. There will be no update of earthquake parameters and the final of earthquake parameters might different.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Average Magnitude (Mag)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ average_magnitude }} M</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-layer-group fa-2x text-gray-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Average Depth (KM)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ average_depth }} KM</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-podcast fa-2x text-gray-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Total Data in Table</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ total_data }}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-database fa-2x text-gray-500"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Collapsable Card Example -->
+                    <div class="card shadow mb-4">
+                        <!-- Card Header - Accordion -->
+                        <a href="#collapseINATEWSnewsTable" class="d-block card-header py-3 collapsed" data-toggle="collapse"
+                            role="button" aria-expanded="true" aria-controls="collapseINATEWSnewsTable">
+                            <h6 class="m-0 font-weight-bold text-primary">PAST 30 SIGNIFICANT EARTHQUAKES*</h6>
+                        </a>
+                        <div class="collapse" id="collapseINATEWSnewsTable">
+                            <div class="card-body">
+                              <div class="table-responsive">
+                                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                      <thead>
+                                          <tr>
+                                              <th>Datetime</th>
+                                              <th>Location</th>
+                                              <th>Mag</th>
+                                              <th>Depth</th>
+                                              <th>Lat</th>
+                                              <th>Long</th>
+                                              <th>Potential</th>
+                                          </tr>
+                                      </thead>
+                                      <tfoot>
+                                          <tr>
+                                              <th>Datetime</th>
+                                              <th>Location</th>
+                                              <th>Mag</th>
+                                              <th>Depth</th>
+                                              <th>Lat</th>
+                                              <th>Long</th>
+                                              <th>Potential</th>
+                                          </tr>
+                                      </tfoot>
+                                      <tbody> <!--tr td-->
+                                        {% for info in json_data.alert.info %}
+                                            <tr>
+                                                <td>{{ info.date }} {{ info.time }}</td>
+                                                <td>{{ info.area }}</td>
+                                                <td>{{ info.magnitude }}</td>
+                                                <td>{{ info.depth }}</td>
+                                                <td>{{ info.latitude }}</td>
+                                                <td>{{ info.longitude }}</td>
+                                                <td>{{ info.potential }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                  </table>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="card-footer py-3">
+                            <h6 class="m-0 text-gray-600">*Click to expand the table.</h6>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card bg-info text-white shadow">
+                                <div class="card-body">
+                                    Info!
+                                    <div class="text-white-50">This cloud base website contains lite and limited information for early warning purposes only, for a full earthquake catalog can be accessed through http://repogempa.bmkg. go.id or contact email bmkg info_inatews@bmkg.go.id to access earthquake waveforms.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /.container-fluid -->
+{% endblock %}

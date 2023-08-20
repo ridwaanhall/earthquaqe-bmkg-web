@@ -138,16 +138,17 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBMKGopenDATA"
+            <li class="nav-item {% if request.path == '/bmkgdata-recentEQ' %}active{% endif %}">
+                <a class="nav-link{% if request.path != '/bmkgdata-recentEQ' %} collapsed{% endif %}" 
+                  href="#" data-toggle="collapse" data-target="#collapseBMKGopenDATA"
                     aria-expanded="true" aria-controls="collapseBMKGopenDATA">
                     <i class="fas fa-fw fa-table"></i>
                     <span>BMKG DATA</span>
                 </a>
-                <div id="collapseBMKGopenDATA" class="collapse" aria-labelledby="BMKGdataEQ" data-parent="#accordionSidebar">
+                <div id="collapseBMKGopenDATA" class="collapse {% if request.path == '/bmkgdata-recentEQ' %}show{% endif %}" aria-labelledby="BMKGdataEQ" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">data.bmkg.go.id</h6>
-                        <a class="collapse-item" href="#">Recent Earthquake</a>
+                        <a class="collapse-item{% if request.path == '/bmkgdata-recentEQ' %} active{% endif %}" href="{{ url_for('bmkgdata_recentEQ') }}">Recent Earthquake</a>
                         <a class="collapse-item" href="#">Earthquake Felt</a>
                     </div>
                 </div>

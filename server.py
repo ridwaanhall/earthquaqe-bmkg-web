@@ -9,13 +9,18 @@ app = Flask(__name__)
 def home():
   return "ridwan dimari"
 
+
 # ============= DASHBOARD ========
 @app.route("/dashboard")
 def dashboard():
   dashboard = Dashboard()
   longitude, latitude, headline = dashboard.maps_dashboard()
   info_dashboard = dashboard.news_dashboard()
-  return render_template("dashboard.html", info_dashboard=info_dashboard, longitude=longitude, latitude=latitude, headline=headline)
+  return render_template("dashboard.html",
+                         info_dashboard=info_dashboard,
+                         longitude=longitude,
+                         latitude=latitude,
+                         headline=headline)
 
 
 # =========== INATEWS ==========
@@ -101,7 +106,8 @@ def inatews_EmgempaQL():
 @app.route("/inatews-EQcatalog")
 def inatews_EQcatalog():
   inatews = INA_TEWS()
-  json_data, average_magnitude, average_depth, total_data = inatews.katalog_gempa()
+  json_data, average_magnitude, average_depth, total_data = inatews.katalog_gempa(
+  )
   return render_template("inatews-katalog_gempa.html",
                          json_data=json_data,
                          average_magnitude=average_magnitude,
@@ -132,18 +138,29 @@ def bmkgdata_news():
 def bmkgdata_maps():
   bmkgdata = BMKG_Data()
   latitude, longitude, gempa_data = bmkgdata.maps()
-  return render_template("bmkgdata-maps.html", latitude=latitude, longitude=longitude, json_data=gempa_data)
+  return render_template("bmkgdata-maps.html",
+                         latitude=latitude,
+                         longitude=longitude,
+                         json_data=gempa_data)
 
 
 @app.route("/bmkgdata-recentEQ")
 def bmkgdata_recentEQ():
   bmkgdata = BMKG_Data()
   json_data, average_magnitude, average_depth, total_data = bmkgdata.recentEQ()
-  return render_template("bmkgdata-recentEQ.html", json_data=json_data, average_magnitude=average_magnitude, average_depth=average_depth, total_data=total_data)
+  return render_template("bmkgdata-recentEQ.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)
 
 
 @app.route("/bmkgdata-EQfelt")
 def bmkgdata_EQfelt():
   bmkgdata = BMKG_Data()
   json_data, average_magnitude, average_depth, total_data = bmkgdata.EQfelt()
-  return render_template("bmkgdata-EQfelt.html", json_data=json_data, average_magnitude=average_magnitude, average_depth=average_depth, total_data=total_data)
+  return render_template("bmkgdata-EQfelt.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)

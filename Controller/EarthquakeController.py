@@ -150,12 +150,13 @@ class BMKG_Data:
 
   def maps(self):
     reader = ReadUrl()
-    json_data = reader.read_json('https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
+    json_data = reader.read_json(
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
     gempa_data = json_data["Infogempa"]["gempa"]
-    latitude, longitude = map(float, gempa_data["point"]["coordinates"].split(','))
+    latitude, longitude = map(float,
+                              gempa_data["point"]["coordinates"].split(','))
     return latitude, longitude, gempa_data
 
-  
   def news(self):
     reader = ReadUrl()
     json_data = reader.read_json(
@@ -165,28 +166,34 @@ class BMKG_Data:
   def recentEQ(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-        'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempaterkini.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempaterkini.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     magnitude_values = [float(gempa["Magnitude"]) for gempa in gempa_list]
-    depth_values = [float(gempa["Kedalaman"].split()[0]) for gempa in gempa_list]
-    average_magnitude = sum(magnitude_values) / len(magnitude_values) if magnitude_values else 0
-    average_depth = sum(depth_values) / len(depth_values) if depth_values else 0
+    depth_values = [
+      float(gempa["Kedalaman"].split()[0]) for gempa in gempa_list
+    ]
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
     total_data = len(gempa_list)  # Calculate the total number of data entries
     return json_data, average_magnitude, average_depth, total_data
-
 
   def EQfelt(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-        'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempadirasakan.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempadirasakan.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     magnitude_values = [float(gempa["Magnitude"]) for gempa in gempa_list]
-    depth_values = [float(gempa["Kedalaman"].split()[0]) for gempa in gempa_list]
-    average_magnitude = sum(magnitude_values) / len(magnitude_values) if magnitude_values else 0
-    average_depth = sum(depth_values) / len(depth_values) if depth_values else 0
+    depth_values = [
+      float(gempa["Kedalaman"].split()[0]) for gempa in gempa_list
+    ]
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
     total_data = len(gempa_list)  # Calculate the total number of data entries
     return json_data, average_magnitude, average_depth, total_data
 
+
 # ================
-
-

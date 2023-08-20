@@ -11,6 +11,7 @@ class ReadData:
 
 
 class Dashboard:
+
   def news_dashboard(self):
     reader = ReadData()
     info_dashboard = reader.read_json(

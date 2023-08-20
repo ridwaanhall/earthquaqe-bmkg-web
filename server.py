@@ -9,6 +9,11 @@ def home():
   return "ridwan dimari"
 
 
+@app.route("/dashboard")
+def dashboard():
+  return render_template("dashboard.html")
+
+
 # =========== INATEWS ==========
 @app.route("/inatews-news")
 def inatews_news():

@@ -33,12 +33,36 @@ def inatews_maps():
 def inatews_live30event():
   inatews = INA_TEWS()
   json_data, average_dalam, average_mag, total_data = inatews.live30event()
-  average_dalam_formatted = "{:.2f}".format(average_dalam)
-  average_mag_formatted = "{:.2f}".format(average_mag)
+  #average_dalam_formatted = "{:.2f}".format(average_dalam)
+  #average_mag_formatted = "{:.2f}".format(average_mag)
   return render_template("inatews-live30event.html",
                          json_data=json_data,
                          average_dalam=average_dalam,
                          average_mag=average_mag,
+                         total_data=total_data)
+
+
+@app.route("/inatews-last30event")
+def inatews_last30event():
+  inatews = INA_TEWS()
+  json_data, average_magnitude, average_depth, total_data = inatews.last30event(
+  )
+  return render_template("inatews-last30event.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)
+
+
+@app.route("/inatews-last30feltevent")
+def inatews_last30feltevent():
+  inatews = INA_TEWS()
+  json_data, average_magnitude, average_depth, total_data = inatews.last30feltevent(
+  )
+  return render_template("inatews-last30feltevent.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
                          total_data=total_data)
 
 

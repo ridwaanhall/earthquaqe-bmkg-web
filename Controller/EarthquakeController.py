@@ -65,26 +65,6 @@ class INA_TEWS:
 
     return json_data, average_magnitude, average_depth, total_data
 
-  def last30tsunamievent(self):
-    reader = ReadUrl()
-    json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/last30tsunamievent.json')
-
-    info_list = json_data["alert"]["info"]
-    magnitude_values = [float(info["magnitude"]) for info in info_list]
-    depth_values = [float(info["depth"].split()[0]) for info in info_list
-                    ]  # Extract the depth value and convert to float
-
-    average_magnitude = sum(magnitude_values) / len(
-      magnitude_values) if magnitude_values else 0
-    average_depth = sum(depth_values) / len(
-      depth_values) if depth_values else 0
-
-    total_data = len(info_list)
-
-    return json_data, average_magnitude, average_depth, total_data
-  
-
   def last30feltevent(self):
     reader = ReadUrl()
     json_data = reader.read_json(
@@ -104,6 +84,70 @@ class INA_TEWS:
 
     return json_data, average_magnitude, average_depth, total_data
 
+  def last30tsunamievent(self):
+    reader = ReadUrl()
+    json_data = reader.read_json(
+      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/last30tsunamievent.json'
+    )
+
+    info_list = json_data["alert"]["info"]
+    magnitude_values = [float(info["magnitude"]) for info in info_list]
+    depth_values = [float(info["depth"].split()[0]) for info in info_list
+                    ]  # Extract the depth value and convert to float
+
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
+
+    total_data = len(info_list)
+
+    return json_data, average_magnitude, average_depth, total_data
+
+  def EmgempaQL(self):
+    reader = ReadUrl()
+    json_data = reader.read_json(
+      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/EmgempaQL.json')
+
+    features = json_data.get("features", [])
+    magnitude_values = [
+      float(feature["properties"]["mag"]) for feature in features
+    ]
+    depth_values = [
+      float(feature["properties"]["depth"]) for feature in features
+    ]
+
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
+
+    total_data = len(features)  # Calculate the total number of data entries
+
+    return json_data, average_magnitude, average_depth, total_data
+
+  def katalog_gempa(self):
+    reader = ReadUrl()
+    json_data = reader.read_json(
+      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/katalog_gempa.json')
+
+    features = json_data.get("features", [])
+    magnitude_values = [
+      float(feature["properties"]["mag"]) for feature in features
+    ]
+    depth_values = [
+      float(feature["properties"]["depth"]) for feature in features
+    ]
+
+    average_magnitude = sum(magnitude_values) / len(
+      magnitude_values) if magnitude_values else 0
+    average_depth = sum(depth_values) / len(
+      depth_values) if depth_values else 0
+
+    total_data = len(features)  # Calculate the total number of data entries
+
+    return json_data, average_magnitude, average_depth, total_data
+
 
 class BMKG_Data:
 
@@ -120,3 +164,7 @@ class BMKG_Data:
     coordinates_str = json_data["Infogempa"]["gempa"]["point"]["coordinates"]
     latitude, longitude = map(float, coordinates_str.split(','))
     return latitude, longitude
+
+
+# ================
+

@@ -101,7 +101,7 @@ def inatews_EQcatalog():
 
 
 @app.route("/inatews-history")
-def inatews_histori():
+def inatews_history():
   inatews = INA_TEWS()
   json_data, average_magnitude, average_depth, total_data = inatews.histori()
   return render_template("inatews-histori.html",

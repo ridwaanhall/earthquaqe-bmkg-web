@@ -66,6 +66,18 @@ def inatews_last30feltevent():
                          total_data=total_data)
 
 
+@app.route("/inatews-last30tsunamievent")
+def inatews_last30tsunamievent():
+  inatews = INA_TEWS()
+  json_data, average_magnitude, average_depth, total_data = inatews.last30tsunamievent(
+  )
+  return render_template("inatews-last30tsunamievent.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)
+
+
 # =========== BMKG DATA ==========
 @app.route("/bmkgdata-news")
 def bmkgdata_news():

@@ -15,13 +15,13 @@ class INA_TEWS:
   def news(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/new.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/new.json')
     return json_data
 
   def maps(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/new.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/new.json')
     coordinates_str = json_data["info"]["point"]["coordinates"]
     headline = json_data['info']['headline']
     longitude, latitude = map(float, coordinates_str.split(','))
@@ -35,7 +35,7 @@ class INA_TEWS:
   def live30event(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/live30event.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/live30event.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     total_data = len(json_data["Infogempa"]["gempa"])
     dalam_values = [float(gempa["dalam"]) for gempa in gempa_list]
@@ -48,7 +48,7 @@ class INA_TEWS:
   def last30event(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/last30event.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30event.json')
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
     depth_values = [float(info["depth"].split()[0]) for info in info_list
@@ -63,7 +63,7 @@ class INA_TEWS:
   def last30feltevent(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/last30feltevent.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30feltevent.json')
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
     depth_values = [float(info["depth"].split()[0]) for info in info_list
@@ -78,7 +78,7 @@ class INA_TEWS:
   def last30tsunamievent(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/last30tsunamievent.json'
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30tsunamievent.json'
     )
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
@@ -94,7 +94,7 @@ class INA_TEWS:
   def EmgempaQL(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/EmgempaQL.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/EmgempaQL.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -112,7 +112,7 @@ class INA_TEWS:
   def katalog_gempa(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/katalog_gempa.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/katalog_gempa.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -130,7 +130,7 @@ class INA_TEWS:
   def histori(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api.ridwaanhall.repl.co/histori.json')
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/histori.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -157,7 +157,7 @@ class BMKG_Data:
   def maps(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquaqe-bmkg-api-v1.ridwaanhall.repl.co/autogempa.json')
+      'https://earthquake-bmkg-api-v1.ridwaanhall.repl.co/autogempa.json')
     coordinates_str = json_data["Infogempa"]["gempa"]["point"]["coordinates"]
     latitude, longitude = map(float, coordinates_str.split(','))
     return latitude, longitude

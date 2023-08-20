@@ -89,6 +89,16 @@ def inatews_EmgempaQL():
                          total_data=total_data)
 
 
+@app.route("/inatews-EQcatalog")
+def inatews_EQcatalog():
+  inatews = INA_TEWS()
+  json_data, average_magnitude, average_depth, total_data = inatews.katalog_gempa()
+  return render_template("inatews-katalog_gempa.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)
+
 # =========== BMKG DATA ==========
 @app.route("/bmkgdata-news")
 def bmkgdata_news():

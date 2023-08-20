@@ -78,6 +78,17 @@ def inatews_last30tsunamievent():
                          total_data=total_data)
 
 
+@app.route("/inatews-EmgempaQL")
+def inatews_EmgempaQL():
+  inatews = INA_TEWS()
+  json_data, average_magnitude, average_depth, total_data = inatews.EmgempaQL()
+  return render_template("inatews-EmgempaQL.html",
+                         json_data=json_data,
+                         average_magnitude=average_magnitude,
+                         average_depth=average_depth,
+                         total_data=total_data)
+
+
 # =========== BMKG DATA ==========
 @app.route("/bmkgdata-news")
 def bmkgdata_news():

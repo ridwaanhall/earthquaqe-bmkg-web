@@ -122,14 +122,12 @@ def bmkgdata_news():
 @app.route("/bmkgdata-maps")
 def bmkgdata_maps():
   bmkgdata = BMKG_Data()
-  latitude, longitude = bmkgdata.maps()
-  json_data = bmkgdata.news()
-  return render_template("bmkgdata-maps.html",
-                         longitude=longitude,
-                         latitude=latitude,
-                         json_data=json_data)
+  latitude, longitude, gempa_data = bmkgdata.maps()
+  return render_template("bmkgdata-maps.html", latitude=latitude, longitude=longitude, json_data=gempa_data)
 
 
-@app.route("/test")
-def test():
-  return render_template("testing.html")
+@app.route("/bmkgdata-recentEQ")
+def bmkgdata_recentEQ():
+  bmkgdata = BMKG_Data()
+  json_data, average_magnitude, average_depth, total_data = bmkgdata.recentEQ()
+  return render_template("bmkgdata-recentEQ.html", json_data=json_data, average_magnitude=average_magnitude, average_depth=average_depth, total_data=total_data)

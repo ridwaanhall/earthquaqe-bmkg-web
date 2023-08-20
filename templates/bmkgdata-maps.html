@@ -50,7 +50,7 @@
                                 <div class="collapse show" id="collapseMapsINATEWS">
                                     <div class="card-body">
                                       <div class="mb-2">
-                                        <div class="text-gray-700">Hehe</div>
+                                        <div class="text-gray-700"></div>
                                       </div>
                                       <div id="eqMap">
                                         
@@ -65,7 +65,7 @@
                                   Intensity Logo v2
                                 </div>
                                 <div class="card-body">
-                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.Infogempa.gempa.Shakemap }}" alt="Intensity Logo v2" class="col-auto">
+                                    <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ json_data.Shakemap }}" alt="Intensity Logo v2" class="col-auto">
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
         { icon: locIcon }
         )
           .addTo(mymap)
-          .bindPopup('<div class="text-gray-700 mb-0">Coordinates : {{ json_data.Infogempa.gempa.point.coordinates }}</div><div class="text-gray-700 mb-0"> Magnitude : {{ json_data.Infogempa.gempa.Magnitude }} M</div><div class="text-gray-700 mb-2"> Depth : {{ json_data.Infogempa.gempa.Kedalaman }}</div>');
+          .bindPopup('<div class="text-gray-700 mb-0">Coordinates : {{ json_data.point.coordinates }}</div><div class="text-gray-700 mb-0"> Magnitude : {{ json_data.Magnitude }} M</div><div class="text-gray-700 mb-2"> Depth : {{ json_data.Kedalaman }}</div>');
 
 
         // Google Map Layer

@@ -6,10 +6,19 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Gempa Dirasakan Terbaru</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Earthquake News - Meteorological, Climatological, and Geophysical Agency</h1>
                     </div>
                     <!-- Content Row -->
                     <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card bg-danger text-white shadow">
+                                <div class="card-body">
+                                    Disclaimer!
+                                    <div class="text-white-50 ">It is mandatory to list BMKG (Meteorology, Climatology and Geophysics Agency) as a data source and display it on your application/system.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-danger shadow h-100 py-2">
@@ -119,7 +128,7 @@
                         <!-- Card Header - Accordion -->
                         <a href="#collapseINATEWSnewsTable" class="d-block card-header py-3 collapsed" data-toggle="collapse"
                             role="button" aria-expanded="true" aria-controls="collapseINATEWSnewsTable">
-                            <h6 class="m-0 font-weight-bold text-primary">Table</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Click here to expand table.</h6>
                         </a>
                         <div class="collapse" id="collapseINATEWSnewsTable">
                             <div class="card-body">
@@ -171,7 +180,17 @@
                             <h6 class="m-0 font-weight-bold text-xs">{{ json_data.Infogempa.gempa.Potensi }}</h6>
                         </div>
                     </div>
-                    
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="card bg-info text-white shadow">
+                                <div class="card-body">
+                                    Info!
+                                    <div class="text-white-50">This cloud base website contains lite and limited information for early warning purposes only, for a full earthquake catalog can be accessed through http://repogempa.bmkg. go.id or contact email bmkg info_inatews@bmkg.go.id to access earthquake waveforms.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
 {% endblock %}

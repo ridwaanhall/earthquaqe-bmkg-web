@@ -115,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6">
+                        <div class="col-lg-6" id="ContentOpenClose">
                             <!-- Collapsable Card Example -->
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Accordion -->
@@ -124,7 +124,7 @@
                                     <h6 class="m-0">Live Maps</h6>
                                 </a>
                                 <!-- Card Content - Collapse -->
-                                <div class="collapse show" id="collapseMapsDashboard">
+                                <div class="collapse show" id="collapseMapsDashboard" data-parent="#ContentOpenClose">
                                     <div class="card-body">
                                       <div id="eqMap">
                                         
@@ -138,7 +138,7 @@
                                     role="button" aria-expanded="true" aria-controls="collapseMapsImage">
                                     <h6 class="m-0">Intensity Logo v2</h6>
                                 </a>
-                                <div class="collapse" id="collapseMapsImage">
+                                <div class="collapse" id="collapseMapsImage"  data-parent="#ContentOpenClose">
                                     <div class="card-body">
                                         <img src="https://earthquake-bmkg-api.ridwaanhall.repl.co/{{ info_dashboard.info.shakemap }}" alt="Intensity Logo v2" class="col-auto">
                                     </div>
@@ -178,7 +178,7 @@
                             <!-- Color System -->
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
-                                    <div class="card bg-info text-white shadow">
+                                    <div class="card bg-secondary text-white shadow">
                                         <div class="card-body chart-pie mb-2">
                                             Last 30 Felt EQ
                                             <canvas id="myPieChart"></canvas>
@@ -186,14 +186,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4">
-                                    <div class="card shadow">
-                                        <!-- Card Header - Dropdown -->
-                                        <div class="card-header">
-                                            <h6 class="m-0 font-weight-bold text-primary">Last 30 Felt EQ</h6>
-                                        </div>
-                                        <!-- Card Body -->
-                                        <div class="card-body chart-pie">
-                                            <!--<canvas id="myPieChart"></canvas>-->
+                                    <div class="card bg-secondary text-white shadow">
+                                        <div class="card-body chart-pie mb-2">
+                                            History EQ
+                                            <canvas id="magHistoryEvent"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -220,9 +216,9 @@
           data: {
             labels: ["I", "II - III", "IV", "V", "VI", "VII", "VIII", "IX - X"],
             datasets: [{
-              data: {{ chart_data }},
-              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#ff6384', '#17a673', '#2c9faf', '#d32f2f', '#1cc88a'],
-              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#ee476e', '#0e905f', '#1c7db4', '#b71c1c', '#0e905f'],
+              data: {{ mag30feltEvent }},
+              backgroundColor: ['#FFFFFF', '#AED6F1', '#A2D9CE', '#F7DC6F', '#F5B041', '#E74C3C', '#C0392B', '#8B0000'],
+              hoverBackgroundColor: ['#F0F0F0', '#8CC2E3', '#7DC8B8', '#E4CC5F', '#E39C30', '#D64132', '#A83223', '#7A0000'],
               hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
           },
@@ -246,6 +242,46 @@
         });
 
     </script>
+
+    <script>
+        // Set new default font family and font color to mimic Bootstrap's default styling
+        Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = '#858796';
+        
+        // Pie Chart Example
+        var ctx = document.getElementById("magHistoryEvent");
+        var magHistoryEvent = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["I", "II - III", "IV", "V", "VI", "VII", "VIII", "IX - X"],
+            datasets: [{
+              data: {{ magHistoryEvent }},
+              backgroundColor: ['#FFFFFF', '#AED6F1', '#A2D9CE', '#F7DC6F', '#F5B041', '#E74C3C', '#C0392B', '#8B0000'],
+              hoverBackgroundColor: ['#F0F0F0', '#8CC2E3', '#7DC8B8', '#E4CC5F', '#E39C30', '#D64132', '#A83223', '#7A0000'],
+              hoverBorderColor: "rgba(234, 236, 244, 1)",
+            }],
+          },
+          options: {
+            maintainAspectRatio: false,
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: '#dddfeb',
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: true,
+              caretPadding: 1,
+            },
+            legend: {
+              display: false
+            },
+            cutoutPercentage: 0,
+          },
+        });
+
+    </script>
+
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>

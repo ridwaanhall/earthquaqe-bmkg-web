@@ -26,3 +26,54 @@ class Dashboard:
     headline = json_data['info']['headline']
     longitude, latitude = map(float, coordinates_str.split(','))
     return longitude, latitude, headline
+
+
+class DashboardListMag:
+
+  def McountList(self):
+    # URL for the JSON data
+    url = "https://earthquake-bmkg-api.ridwaanhall.repl.co/last30feltevent.json"
+  
+    # Fetch JSON data from the URL
+    response = requests.get(url)
+    json_data = response.json()
+  
+    # Initialize a dictionary to store the count of magnitudes for each level category
+    magnitude_counts = {
+      'I': 0,
+      'II-III': 0,
+      'IV': 0,
+      'V': 0,
+      'VI': 0,
+      'VII': 0,
+      'VIII': 0,
+      'IX-X': 0
+    }
+  
+    # Loop through the info entries and categorize magnitudes by level
+    for info in json_data['alert']['info']:
+      magnitude = float(info['magnitude'])
+  
+      if magnitude <= 1.99999999:
+        magnitude_counts['I'] += 1
+      elif magnitude <= 3.99999999:
+        magnitude_counts['II-III'] += 1
+      elif magnitude <= 4.99999999:
+        magnitude_counts['IV'] += 1
+      elif magnitude <= 5.99999999:
+        magnitude_counts['V'] += 1
+      elif magnitude <= 6.99999999:
+        magnitude_counts['VI'] += 1
+      elif magnitude <= 7.99999999:
+        magnitude_counts['VII'] += 1
+      elif magnitude <= 8.99999999:
+        magnitude_counts['VIII'] += 1
+      else:
+        magnitude_counts['IX-X'] += 1
+  
+    # Convert the dictionary values to a list
+    magnitude_counts_list = [
+      magnitude_counts[level] for level in magnitude_counts
+    ]
+    return magnitude_counts_list
+  

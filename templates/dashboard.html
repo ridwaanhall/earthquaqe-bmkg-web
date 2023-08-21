@@ -178,22 +178,22 @@
                             <!-- Color System -->
                             <div class="row">
                                 <div class="col-lg-6 mb-4">
-                                    <div class="card shadow">
-                                        <!-- Card Header - Dropdown -->
-                                        <div class="card-header">
-                                            <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                                        </div>
-                                        <!-- Card Body -->
-                                        <div class="card-body chart-pie">
+                                    <div class="card bg-info text-white shadow">
+                                        <div class="card-body chart-pie mb-2">
+                                            Last 30 Felt EQ
                                             <canvas id="myPieChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 mb-4">
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Success
-                                            <div class="text-white-50 small">#1cc88a</div>
+                                    <div class="card shadow">
+                                        <!-- Card Header - Dropdown -->
+                                        <div class="card-header">
+                                            <h6 class="m-0 font-weight-bold text-primary">Last 30 Felt EQ</h6>
+                                        </div>
+                                        <!-- Card Body -->
+                                        <div class="card-body chart-pie">
+                                            <!--<canvas id="myPieChart"></canvas>-->
                                         </div>
                                     </div>
                                 </div>
@@ -218,11 +218,11 @@
         var myPieChart = new Chart(ctx, {
           type: 'pie',
           data: {
-            labels: ["Direct", "Referral", "Social"],
+            labels: ["I", "II - III", "IV", "V", "VI", "VII", "VIII", "IX - X"],
             datasets: [{
-              data: [55, 30, 15],
-              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+              data: {{ chart_data }},
+              backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#ff6384', '#17a673', '#2c9faf', '#d32f2f', '#1cc88a'],
+              hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#ee476e', '#0e905f', '#1c7db4', '#b71c1c', '#0e905f'],
               hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
           },
@@ -239,7 +239,7 @@
               caretPadding: 1,
             },
             legend: {
-              display: true
+              display: false
             },
             cutoutPercentage: 0,
           },

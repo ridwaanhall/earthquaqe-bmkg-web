@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from Controller.EarthquakeController import INA_TEWS, BMKG_Data
-from Controller.DashboardController import Dashboard
+from Controller.DashboardController import Dashboard, DashboardListMag
 
 app = Flask(__name__)
 
@@ -14,13 +14,18 @@ def home():
 @app.route("/dashboard")
 def dashboard():
   dashboard = Dashboard()
+  list_mag = DashboardListMag()
+  #dashboard_chart = DashboardController()
   longitude, latitude, headline = dashboard.maps_dashboard()
   info_dashboard = dashboard.news_dashboard()
+  chart_data = list_mag.McountList()
   return render_template("dashboard.html",
                          info_dashboard=info_dashboard,
                          longitude=longitude,
                          latitude=latitude,
-                         headline=headline)
+                         headline=headline,
+                         chart_data=chart_data
+                        )
 
 
 # =========== INATEWS ==========

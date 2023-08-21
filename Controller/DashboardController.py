@@ -27,6 +27,16 @@ class Dashboard:
     longitude, latitude = map(float, coordinates_str.split(','))
     return longitude, latitude, headline
 
+  def Naration(self):
+    reader = ReadData()
+    info_dashboard = reader.read_json(
+      'https://earthquake-bmkg-api.ridwaanhall.repl.co/new.json')
+    eventid = info_dashboard['info']['eventid']
+    url = f'https://bmkg-content-inatews.storage.googleapis.com/{eventid}_narasi.txt'
+    response = requests.get(url)
+    narasi_text = response.text
+    return narasi_text
+
 
 class DashboardStatistics:
 
@@ -126,3 +136,4 @@ class DashboardStatistics:
       magnitude_counts[level] for level in magnitude_counts
     ]
     return magHistoryList
+

@@ -20,13 +20,15 @@ def dashboard():
   info_dashboard = dashboard.news_dashboard()
   mag30feltEvent = list_mag.McountList()
   magHistoryEvent = list_mag.magHistory()
+  narasi_text = dashboard.Naration()
   return render_template("dashboard.html",
                          info_dashboard=info_dashboard,
                          longitude=longitude,
                          latitude=latitude,
                          headline=headline,
                          mag30feltEvent=mag30feltEvent,
-                         magHistoryEvent=magHistoryEvent
+                         magHistoryEvent=magHistoryEvent,
+                         narasi_text=narasi_text
                         )
 
 

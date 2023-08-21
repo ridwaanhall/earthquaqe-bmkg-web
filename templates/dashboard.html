@@ -35,6 +35,8 @@
                 <div class="container-fluid">
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Dashboard - RidwaanHall</h1>
+                        <div href="#" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Last update {{ info_dashboard.info.timesent }}</div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 mb-4">
@@ -180,7 +182,7 @@
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-secondary text-white shadow">
                                         <div class="card-body chart-pie mb-2">
-                                            Last 30 Felt EQ
+                                            Level EQ - Last 30 Felt EQ
                                             <canvas id="myPieChart"></canvas>
                                         </div>
                                     </div>
@@ -188,9 +190,24 @@
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-secondary text-white shadow">
                                         <div class="card-body chart-pie mb-2">
-                                            History EQ
+                                            Level EQ - History EQ
                                             <canvas id="magHistoryEvent"></canvas>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-12 mb-4">
+                          <div class="card shadow mb-4">
+                                <!-- Card Header - Accordion -->
+                                <a href="#collapseNarasi" class="d-block card-header py-3 collapsed" data-toggle="collapse"
+                                    role="button" aria-expanded="true" aria-controls="collapseNarasi">
+                                    <h6 class="m-0">Narasi</h6>
+                                </a>
+                                <div class="collapse" id="collapseNarasi">
+                                    <div class="card-body">
+                                        {{ narasi_text | safe }}
                                     </div>
                                 </div>
                             </div>
@@ -217,8 +234,8 @@
             labels: ["I", "II - III", "IV", "V", "VI", "VII", "VIII", "IX - X"],
             datasets: [{
               data: {{ mag30feltEvent }},
-              backgroundColor: ['#FFFFFF', '#AED6F1', '#A2D9CE', '#F7DC6F', '#F5B041', '#E74C3C', '#C0392B', '#8B0000'],
-              hoverBackgroundColor: ['#F0F0F0', '#8CC2E3', '#7DC8B8', '#E4CC5F', '#E39C30', '#D64132', '#A83223', '#7A0000'],
+              backgroundColor: ['#f8f9fc', '#4e73df', '#36b9cc', '#1cc88a', '#f6c23e', '#e74a3b', '#858796', '#5a5c69'],
+              hoverBackgroundColor: ['#E2E5EB', '#3554B4', '#2698B4', '#14A66B', '#E0B834', '#D93A2B', '#6E7581', '#484B55'],
               hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
           },
@@ -256,8 +273,8 @@
             labels: ["I", "II - III", "IV", "V", "VI", "VII", "VIII", "IX - X"],
             datasets: [{
               data: {{ magHistoryEvent }},
-              backgroundColor: ['#FFFFFF', '#AED6F1', '#A2D9CE', '#F7DC6F', '#F5B041', '#E74C3C', '#C0392B', '#8B0000'],
-              hoverBackgroundColor: ['#F0F0F0', '#8CC2E3', '#7DC8B8', '#E4CC5F', '#E39C30', '#D64132', '#A83223', '#7A0000'],
+              backgroundColor: ['#f8f9fc', '#4e73df', '#36b9cc', '#1cc88a', '#f6c23e', '#e74a3b', '#858796', '#5a5c69'],
+              hoverBackgroundColor: ['#E2E5EB', '#3554B4', '#2698B4', '#14A66B', '#E0B834', '#D93A2B', '#6E7581', '#484B55'],
               hoverBorderColor: "rgba(234, 236, 244, 1)",
             }],
           },

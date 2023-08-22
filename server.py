@@ -1,16 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template  #, url_for, redirect
 from Controller.EarthquakeController import INA_TEWS, BMKG_Data
 from Controller.DashboardController import Dashboard, DashboardStatistics
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def home():
-  return "ridwan dimari"
+# ============ 404 ===============
+@app.route("/<path:invalid_url>")
+def code_404(invalid_url):
+  invalid_url = invalid_url
+  return render_template("404.html", invalid_url=invalid_url)
 
 
 # ============= DASHBOARD ========
+@app.route("/")
 @app.route("/dashboard")
 def dashboard():
   dashboard = Dashboard()
@@ -28,8 +31,7 @@ def dashboard():
                          headline=headline,
                          mag30feltEvent=mag30feltEvent,
                          magHistoryEvent=magHistoryEvent,
-                         narasi_text=narasi_text
-                        )
+                         narasi_text=narasi_text)
 
 
 # =========== INATEWS ==========

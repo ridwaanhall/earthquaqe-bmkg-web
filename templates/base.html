@@ -9,64 +9,36 @@
     <meta name="description" content="This website using bootstrap">
     <meta name="author" content="Ridwan Halim">
     <title>{% block title %}EQ - BMKG{% endblock %}</title>
-
-    <!-- Custom fonts for this template -->
     <link href="static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="static/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="static/css/scroll.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
     <link href="static/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-    <!-- overlayScrollbars -->
     <link rel="stylesheet" href="static/vendor/overlayScrollbars/css/OverlayScrollbars.min.css">
-
     {% block head_maps %}
     {% endblock %}
   
-
 </head>
 
 <body id="page-top">
-
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-house-chimney-crack"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">EQ<sup>BMKG</sup></div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item {% if request.path == '/dashboard' %}active{% endif %}">
                 <a class="nav-link" href="{{ url_for('dashboard') }}">
                     <i class="fas fa-fw fa-house"></i>
                     <span>Dashboard</span></a>
             </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
             <div class="sidebar-heading">
                 LATEST EARTHQUAKE
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if request.path == '/inatews-news' or request.path == '/inatews-maps' %}active{% endif %}">
                 <a class="nav-link{% if request.path != '/inatews-news'  and request.path != '/inatews-maps' %} collapsed{% endif %}"
                    href="#" data-toggle="collapse" data-target="#collapseINATEWSnews"
@@ -83,9 +55,6 @@
                     </div>
                 </div>
             </li>
-
-
-            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item {% if request.path == '/bmkgdata-news' or request.path == '/bmkgdata-maps' %}active{% endif %}">
                 <a class="nav-link{% if request.path != '/bmkgdata-news'  and request.path != '/bmkgdata-maps' %} collapsed{% endif %}" 
                   href="#" data-toggle="collapse" data-target="#collapseBMKGdataNew"
@@ -103,16 +72,10 @@
                     </div>
                 </div>
             </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
             <div class="sidebar-heading">
                 EQ DATA
             </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if request.path == '/inatews-live30event' or request.path == '/inatews-last30event' or request.path == '/inatews-last30feltevent' or request.path == '/inatews-last30tsunamievent' or request.path == '/inatews-EmgempaQL' or request.path == '/inatews-EQcatalog' or request.path == '/inatews-history' %}active{% endif %}">
                 <a class="nav-link{% if request.path != '/inatews-live30event' and request.path != '/inatews-last30event' and request.path != '/inatews-last30feltevent' and request.path != '/inatews-last30tsunamievent' and request.path != '/inatews-EmgempaQL' and request.path != '/inatews-EQcatalog' and request.path != '/inatews-history' %} collapsed{% endif %}" 
                   href="#" data-toggle="collapse" data-target="#collapseINATEWSeq"
@@ -137,7 +100,6 @@
                     </div>
                 </div>
             </li>
-
             <li class="nav-item {% if request.path == '/bmkgdata-recentEQ' or request.path == '/bmkgdata-EQfelt' %}active{% endif %}">
                 <a class="nav-link{% if request.path != '/bmkgdata-recentEQ' and request.path != '/bmkgdata-EQfelt'%} collapsed{% endif %}" 
                   href="#" data-toggle="collapse" data-target="#collapseBMKGopenDATA"
@@ -153,63 +115,78 @@
                     </div>
                 </div>
             </li>
-            
-
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
-                    <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
+                        <!-- Nav Item - Alerts -->
+                        <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-code-fork fa-fw"></i>
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter">3+</span>
+                            </a>
+                            <!-- Dropdown - Alerts -->
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                <h6 class="dropdown-header">
+                                    My Social Media
+                                </h6>
+                                <a class="dropdown-item d-flex align-items-center" href="https://www.linkedin.com/in/ridwaanhall" target="_blank">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-brands fa-linkedin-in text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-weight-bold">linkedin.com/in/ridwaanhall</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="https://github.com/ridwaanhall" target="_blank">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-brands fa-github text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-weight-bold">github.com/ridwaanhall</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center" href="https://www.instagram.com/ridwaanhall" target="_blank">
+                                    <div class="mr-3">
+                                        <div class="icon-circle bg-primary">
+                                            <i class="fas fa-brands fa-instagram text-white"></i>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="font-weight-bold">instagram.com/ridwaanhall</span>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item text-center small text-gray-500" href="https://linktr.ee/ridwaanhall" target="_blank">Show All Social Media</a>
+                            </div>
+                        </li>
                         <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-0 d-none d-lg-inline text-gray-600 small">RidwaanHall</span>
                                 <i class="fas fa-fw fa-solid fa-circle-check mr-2 mb-1"></i>
-                                
-                                <img class="img-profile rounded-circle"
-                                    src="static/img/RidwaanHall.jpg">
+                                <img class="img-profile rounded-circle" src="static/img/RidwaanHall.jpg">
                             </a>
                         </li>
-
                     </ul>
-
                 </nav>
-                <!-- End of Topbar -->
-
                 {% block content %}{% endblock %}
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
@@ -217,33 +194,16 @@
                     </div>
                 </div>
             </footer>
-            <!-- End of Footer -->
-
         </div>
-        <!-- End of Content Wrapper -->
-
     </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Bootstrap core JavaScript-->
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
     <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
     <script src="static/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
     <script src="static/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="static/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
     <script src="static/js/demo/datatables-demo.js"></script>
-
-    <!-- overlayScrollbars -->
-    <script src="static/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js">    </script>
+    <script src="static/vendor/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <script src="https://kit.fontawesome.com/17dd18b72c.js" crossorigin="anonymous"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
@@ -252,22 +212,15 @@
       });
       	window.os = os
       	const blocks = document.querySelectorAll('div.block')
-      	
       	function scrollIntoViewIfNeeded(el){
       		const height = window.innerHeight || document.documentElement.clientHeight
       		const { top, bottom } = el.getBoundingClientRect()
       		console.log('h', height, 't', top, 'b', bottom)
       		if (top < height * 0.1 || bottom > height * 0.9) {
-      			// almost does not scroll near the bottom and
-      			// does not scroll at the bottom
-      			os.update() // THE FIX!!!
+      			os.update()
       			os.scroll({el, block : "center"}, 200)
-      			
-      			// does not scroll to the bottom!
-      			//os.scroll({y:'100%'}, 1000)
       		}
       	}
-      	
       	blocks.forEach(b=>{
       		const title = b.children[0]
       		const body = b.children[1]
@@ -280,7 +233,6 @@
       			}
       		})
       	})
-      	
       });
     </script>
     {% block maps %} {% endblock %}

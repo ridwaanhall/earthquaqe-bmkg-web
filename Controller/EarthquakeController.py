@@ -15,13 +15,13 @@ class INA_TEWS:
   def news(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/new.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/new.json')
     return json_data
 
   def maps(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/new.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/new.json')
     coordinates_str = json_data["info"]["point"]["coordinates"]
     headline = json_data['info']['headline']
     longitude, latitude = map(float, coordinates_str.split(','))
@@ -29,13 +29,13 @@ class INA_TEWS:
 
   #def live30event(self):
   #    reader = ReadUrl()
-  #    json_data = reader.read_json('https://earthquake-bmkg-api.ridwaanhall.repl.co/live30event.json')
+  #    json_data = reader.read_json('https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/live30event.json')
   #    return json_data
 
   def live30event(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/live30event.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/live30event.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     total_data = len(json_data["Infogempa"]["gempa"])
     dalam_values = [float(gempa["dalam"]) for gempa in gempa_list]
@@ -48,7 +48,7 @@ class INA_TEWS:
   def last30event(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30event.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/last30event.json')
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
     depth_values = [float(info["depth"].split()[0]) for info in info_list
@@ -63,7 +63,7 @@ class INA_TEWS:
   def last30feltevent(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30feltevent.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/last30feltevent.json')
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
     depth_values = [float(info["depth"].split()[0]) for info in info_list
@@ -78,7 +78,7 @@ class INA_TEWS:
   def last30tsunamievent(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/last30tsunamievent.json'
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/last30tsunamievent.json'
     )
     info_list = json_data["alert"]["info"]
     magnitude_values = [float(info["magnitude"]) for info in info_list]
@@ -94,7 +94,7 @@ class INA_TEWS:
   def EmgempaQL(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/EmgempaQL.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/EmgempaQL.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -112,7 +112,7 @@ class INA_TEWS:
   def katalog_gempa(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/katalog_gempa.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/katalog_gempa.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -130,7 +130,7 @@ class INA_TEWS:
   def histori(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/histori.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/histori.json')
     features = json_data.get("features", [])
     magnitude_values = [
       float(feature["properties"]["mag"]) for feature in features
@@ -151,7 +151,7 @@ class BMKG_Data:
   def maps(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/autogempa.json')
     gempa_data = json_data["Infogempa"]["gempa"]
     latitude, longitude = map(float,
                               gempa_data["point"]["coordinates"].split(','))
@@ -160,13 +160,13 @@ class BMKG_Data:
   def news(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/autogempa.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/autogempa.json')
     return json_data
 
   def recentEQ(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempaterkini.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/gempaterkini.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     magnitude_values = [float(gempa["Magnitude"]) for gempa in gempa_list]
     depth_values = [
@@ -182,7 +182,7 @@ class BMKG_Data:
   def EQfelt(self):
     reader = ReadUrl()
     json_data = reader.read_json(
-      'https://earthquake-bmkg-api.ridwaanhall.repl.co/gempadirasakan.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/gempadirasakan.json')
     gempa_list = json_data["Infogempa"]["gempa"]
     magnitude_values = [float(gempa["Magnitude"]) for gempa in gempa_list]
     depth_values = [

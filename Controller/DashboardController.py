@@ -15,13 +15,13 @@ class Dashboard:
   def news_dashboard(self):
     reader = ReadData()
     info_dashboard = reader.read_json(
-      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/new.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-2otf88exguxxt.spock.replit.dev/new.json')
     return info_dashboard
 
   def maps_dashboard(self):
     reader = ReadData()
     json_data = reader.read_json(
-      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/new.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-2otf88exguxxt.spock.replit.dev/new.json')
     coordinates_str = json_data["info"]["point"]["coordinates"]
     headline = json_data['info']['headline']
     longitude, latitude = map(float, coordinates_str.split(','))
@@ -30,7 +30,7 @@ class Dashboard:
   def Naration(self):
     reader = ReadData()
     info_dashboard = reader.read_json(
-      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/new.json')
+      'https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-2otf88exguxxt.spock.replit.dev/new.json')
     eventid = info_dashboard['info']['eventid']
     url = f'https://bmkg-content-inatews.storage.googleapis.com/{eventid}_narasi.txt'
     response = requests.get(url)
@@ -42,7 +42,7 @@ class DashboardStatistics:
 
   def McountList(self):
     # URL for the JSON data
-    url = "https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/last30feltevent.json"
+    url = "https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-2otf88exguxxt.spock.replit.dev/last30feltevent.json"
   
     # Fetch JSON data from the URL
     response = requests.get(url)
@@ -89,7 +89,7 @@ class DashboardStatistics:
 
   def magHistory(self):
     # URL for the JSON data
-    url = "https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-1qo7jyrgk2g2p.global.replit.dev/histori.json"
+    url = "https://08af913f-9472-4b1a-b6aa-625e70d2d226-00-2otf88exguxxt.spock.replit.dev/histori.json"
   
     # Fetch JSON data from the URL
     response = requests.get(url)
